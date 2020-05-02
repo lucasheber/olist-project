@@ -34,8 +34,8 @@ function readURL(input) {
             reader.onload = function(event) {
                 images = `<div class="form-group">
                                 <img class="pl-2" src="${event.target.result}" width="70" height="50">
-                                <input onclick="$(this).closest('div').remove();" type="button" class="float-right pr-2 btn-danger btn-sm" value="Remover">
-                                <input type="button" class="float-right btn-primary btn-sm" value="Foto Capa">
+                                <input onclick="$(this).closest('div').remove();" type="button" class="float-right pr-2" value="Remover">
+                                <input type="button" class="float-right" value="Foto Capa">
                                 <hr>
                          </div>`
                 $(".div-images").append(images);
