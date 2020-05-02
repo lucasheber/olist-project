@@ -83,8 +83,33 @@
             </main>
         </div>
     </div>
+    <hr>
+    <div id="app">
+        <div class="row">
+            <div class="col p-2 ml-5">
+                <label for="pergunta">Faça sua pergunta abaixo:</label>
+                <textarea cols="15" placeholder="Escreva sua pergunta aqui" class="form-control" v-model="pergunta"></textarea>
+            </div>
+            <div class="col p-5">
+                <button @click="verificar_pergunta()" class="btn btn-primary">Enviar Pergunta</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col p-5 respostas">
+                <h4 class="p-2">Últimas perguntas:</h4>
+                <b>Pergunta:</b> {{pergunta_r}}<br><i class="pl-5"> Resposta:</i> {{resposta}}
+            </div>
+            <div class="col pl-5 pr-5 late">
+                <div class="alert alert-success info" role="alert">
+                    Sua resposta será atendida em breve.
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="script.js" charset="utf-8"></script>
 </body>
 

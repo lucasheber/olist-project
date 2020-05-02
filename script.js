@@ -19,6 +19,22 @@ $(document).ready(function() {
     $(".delete-row").click(function() {
         $(this).parents("tr").remove();
     });
+
+    $("#salvar").on('click', function() {
+        var produto = $("form.produto").serializeArray();
+        localStorage.setItem("produto", JSON.stringify(produto))
+        $(".message").show();
+
+    });
+
+    $("#pergunta").on('click', function() {
+        console.log(localStorage.getItem("respostas"));
+        console.log(localStorage.getItem("produto"));
+    });
+
+    $(".respostas").hide();
+    $(".message").hide();
+    $(".late").hide();
 });
 
 function readURL(input) {
@@ -52,7 +68,8 @@ var app = new Vue({
     el: '#app',
     data: {
         pergunta: "",
-        resposta: "[Escreva uma resposta para o cliente]",
+        pergunta_r: "",
+        resposta: "",
         palavras_chave: "",
         resposta_automatica: "",
         arr_respostas: []
@@ -62,9 +79,11 @@ var app = new Vue({
             return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
         },
         verificar_pergunta() {
+
             let pergunta = this.remove_acentos(this.pergunta);
 
             this.resposta = "";
+            this.arr_respostas = JSON.parse(localStorage.getItem("respostas"))
 
             for (i_r = 0; i_r < this.arr_respostas.length; i_r++) {
 
@@ -74,17 +93,24 @@ var app = new Vue({
                     let p = r.palavras_chave[i];
 
                     if (pergunta == p || pergunta.includes(" " + p + " ") || pergunta.includes(" " + p + "?") || pergunta.includes(p + " ")) {
-                        this.resposta += r.resposta + "<br><br>";
+                        this.resposta += r.resposta;
+                        this.pergunta_r = this.pergunta;
+                        $(".late").hide();
+                        $(".respostas").show();
                         break;
                     }
                 }
             };
 
             if (this.resposta == "") {
+                $(".late").show();
+                this.pergunta_r = ""
                 this.resposta = "[Escreva uma resposta para o cliente]";
             }
         },
         adicionar_resposta_automatica() {
+            if (this.palavras_chave.trim() == '') return;
+
             let palavras_chave = this.remove_acentos(this.palavras_chave);
             palavras_chave = palavras_chave.split(' ');
 
@@ -92,6 +118,8 @@ var app = new Vue({
                 palavras_chave: palavras_chave,
                 resposta: this.resposta_automatica
             });
+
+            localStorage.setItem("respostas", JSON.stringify(this.arr_respostas))
 
             this.palavras_chave = "";
             this.resposta_automatica = ""
