@@ -8,84 +8,140 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <!-- CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link href="style.css" rel="stylesheet">
     <meta name="robots" content="noindex,follow" />
 
 </head>
 
 <body>
-    <div class="row">
-        <div class="col-7">
-            <main class="container">
-
-                <!-- Left Column / Headphones Image -->
-                <div class="left-column">
-                    <img data-image="black" src="images/black.png" alt="">
-                    <img data-image="blue" src="images/blue.png" alt="">
-                    <img data-image="red" class="active" src="images/red.png" alt="">
-                </div>
-
-
-                <!-- Right Column -->
-                <div class="right-column">
-
-                    <!-- Product Description -->
-                    <div class="product-description">
-                        <span>Headphones</span>
-                        <h1>Beats EP</h1>
-                        <p>The preferred choice of a vast range of acclaimed DJs. Punchy, bass-focused sound and high isolation. Sturdy headband and on-ear cushions suitable for live performance</p>
+    <main class="container">
+        <div class="row">
+            <div class="col pt-5">
+                <div class="card">
+                    <div class="card-header">
+                        Cadastrar Produto
                     </div>
-
-                    <!-- Product Configuration -->
-                    <div class="product-configuration">
-
-                        <!-- Product Color -->
-                        <div class="product-color">
-                            <span>Color</span>
-
-                            <div class="color-choose">
-                                <div>
-                                    <input data-image="red" type="radio" id="red" name="color" value="red" checked>
-                                    <label for="red"><span></span></label>
-                                </div>
-                                <div>
-                                    <input data-image="blue" type="radio" id="blue" name="color" value="blue">
-                                    <label for="blue"><span></span></label>
-                                </div>
-                                <div>
-                                    <input data-image="black" type="radio" id="black" name="color" value="black">
-                                    <label for="black"><span></span></label>
+                    <div class="card-body">
+                        <form action="#">
+                            <div class="form-group">
+                                <label for="title">Título</label>
+                                <input type="text" class="form-control" id="title" placeholder="Informe o Titulo aqui">
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <label for="description">Descrição</label>
+                                <textarea class="form-control" id="description" rows="3"></textarea>
+                            </div>
+                            <hr>
+                            <div class="form-group div-images">
+                                <label for="images">Enviar Imagens</label>
+                                <input onchange="readURL(this);" accept="image/jpeg, image/png" type="file" title="Escolher Imagens" multiple name="images[]" id="images">
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <label for="category">Categoria</label>
+                                <select class="form-control" name="category" id="category">
+                                    <option value="smatphone">Smartphone</option>
+                                    <option value="ropas">Roupas</option>
+                                </select>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <label for="caracteristics">Características</label>
+                                <input type="button" class="add-row" value="Adicionar">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Atributo</th>
+                                            <th>Valor</th>
+                                            <th>#</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input class="form-control" type="text" readonly value="Marca"></td>
+                                            <td><input class="form-control" type="text" name="marca" id="marca"></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <label for="tam-prod">Medidas do Produto</label>
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="comprimento">Comprimento</label>
+                                        <input class="form-control" type="number" name="comprimento" id="comprimento">
+                                    </div>
+                                    <div class="col">
+                                        <label for="largura">Largura</label>
+                                        <input class="form-control" type="number" name="largura" id="largura">
+                                    </div>
+                                    <div class="col">
+                                        <label for="altura">Altura</label>
+                                        <input class="form-control" type="number" name="altura" id="altura">
+                                    </div>
+                                    <div class="col">
+                                        <label for="peso">Peso</label>
+                                        <input class="form-control" type="number" name="peso" id="peso">
+                                    </div>
                                 </div>
                             </div>
-
-                        </div>
-
-                        <!-- Cable Configuration -->
-                        <div class="cable-config">
-                            <span>Cable configuration</span>
-
-                            <div class="cable-choose">
-                                <button>Straight</button>
-                                <button>Coiled</button>
-                                <button>Long-coiled</button>
+                            <hr>
+                            <div class="form-group">
+                                <label for="tam-prod">Medidas do Pacote</label>
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="comprimento">Comprimento</label>
+                                        <input class="form-control" type="number" name="comprimento" id="comprimento">
+                                    </div>
+                                    <div class="col">
+                                        <label for="largura">Largura</label>
+                                        <input class="form-control" type="number" name="largura" id="largura">
+                                    </div>
+                                    <div class="col">
+                                        <label for="altura">Altura</label>
+                                        <input class="form-control" type="number" name="altura" id="altura">
+                                    </div>
+                                    <div class="col">
+                                        <label for="peso">Peso</label>
+                                        <input class="form-control" type="number" name="peso" id="peso">
+                                    </div>
+                                </div>
                             </div>
-
-                            <a href="#">How to configurate your headphones</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Pricing -->
-                    <div class="product-price">
-                        <span>R$250</span>
-                        <a href="#" class="cart-btn">Add to cart</a>
+                            <hr>
+                        </form>
                     </div>
                 </div>
-            </main>
+            </div>
         </div>
-    </div>
-    <!-- Scripts -->
+        <div class="row">
+            <div class="col pt-5 mb-5" id="app">
+                <div class="card">
+                    <div class="card-header">
+                        Cadastrar respostas automáticas
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="key_word">Palavras Chave:</label>
+                            <input class="form-control" placeholder="Digite as palavras separadas por espaços" type="text" name="key_word" id="key_word" v-model="palavras_chave">
+                        </div>
+                        <div class="form-group">
+                            <label for="answer">Resposta Automática:</label>
+                            <input class="form-control" type="text" name="answer" id="answer" v-model="resposta_automatica">
+                        </div>
+                        <button @click="adicionar_resposta_automatica()">Adicionar</button>
+                        <hr>
+                        <ul v-for="r in arr_respostas">
+                            <li>Palavras-chave: {{r.palavras_chave.join(' ')}}</li>
+                            <li>Resposta: {{r.resposta}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="script.js" charset="utf-8"></script>
 </body>
-
-</html>
