@@ -33,6 +33,14 @@
                         <div class="product-description">
                             <span>{{ produto.categoria }}</span>
                             <h4>{{ produto.titulo }}</h4>
+                            <div>
+                                <table class="table table-bordered table-striped">
+                                    <tr v-for="p in produto.caracteristicas">
+                                        <th>{{p.chave}}</th>
+                                        <td>{{p.valor}}</td>
+                                    </tr>
+                                </table>
+                            </div>
                             <p>{{ produto.descricao }}</p>
                         </div>
 
