@@ -15,11 +15,12 @@
 
 <body>
     <main class="container" id="app">
+        <h1 class="text-center">MegaHack 2.0 - Desafio Olist - Grupo 58</h1>
         <div class="row">
             <div class="col pt-5">
                 <div class="card">
                     <div class="card-header">
-                        Cadastrar Produto
+                        Cadastro do Produto
                     </div>
                     <div class="card-body">
                         <form action="#" class="produto">
@@ -39,7 +40,7 @@
 
                                 <div class="form-group" v-for="(img, index) in produto.imagens">
                                     <img class="pl-2" :src="img" width="70" height="50">
-                                    <input @click="remover_imagem(index)" type="button" class="float-right pr-2" value="Remover">
+                                    <input @click="remover_imagem(index)" type="button" class="btn btn-danger float-right pr-2" value="Remover">
                                     <hr>
                                 </div>
                             </div>
@@ -54,7 +55,8 @@
                             <hr>
                             <div class="form-group">
                                 <label for="caracteristics">Características</label>
-                                <input type="button" class="add-row" value="Adicionar">
+                                <button class="btn btn-success add-row" @click="adicionar_caracteristica()"><i class="fa fa-plus"></i></button>
+                                <br><br>
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
@@ -130,7 +132,7 @@
             <div class="col pt-5 mb-5">
                 <div class="card">
                     <div class="card-header">
-                        Cadastrar respostas automáticas
+                        Cadastro de Respostas Automáticas
                     </div>
                     <div class="card-body">
                         <div class="form-group">
@@ -141,7 +143,7 @@
                             <label for="answer">Resposta Automática:</label>
                             <input class="form-control" type="text" v-model="resposta_automatica">
                         </div>
-                        <button @click="adicionar_resposta_automatica()">Adicionar</button>
+                        <button class="btn btn-success" @click="adicionar_resposta_automatica()">Adicionar</button>
                         <hr>
                         <h5>Respostas Cadastradas</h5>
                         <table class="table table-bordered">
@@ -174,12 +176,14 @@
         </div>
         <div class="alert alert-success" v-show="msg_sucesso">
             Os dados foram salvos com sucesso!
-            <a href="produto.html">Ver produto</a>
         </div>
         <div class="row mb-5">
             <div class="col text-center">
                 <button class="btn btn-success btn-lg" @click="salvar()">Salvar</button>
             </div>
+        </div>
+        <div class="alert alert-primary" >
+            <a href="produto.html">Ver produto</a>
         </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
