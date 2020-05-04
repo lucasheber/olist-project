@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <main class="container">
+    <main class="container" id="app">
         <div class="row">
             <div class="col pt-5">
                 <div class="card">
@@ -24,12 +24,12 @@
                         <form action="#" class="produto">
                             <div class="form-group">
                                 <label for="title">Título</label>
-                                <input type="text" class="form-control" id="title" placeholder="Informe o Titulo aqui">
+                                <input type="text" class="form-control" v-model="produto.titulo" placeholder="Informe o Titulo aqui">
                             </div>
                             <hr>
                             <div class="form-group">
                                 <label for="description">Descrição</label>
-                                <textarea class="form-control" id="description" rows="3"></textarea>
+                                <textarea class="form-control" v-model="produto.descricao" rows="3"></textarea>
                             </div>
                             <hr>
                             <div class="form-group div-images">
@@ -39,9 +39,9 @@
                             <hr>
                             <div class="form-group">
                                 <label for="category">Categoria</label>
-                                <select class="form-control" name="category" id="category">
+                                <select class="form-control" name="category" v-model="produto.categoria">
                                     <option value="smatphone">Smartphone</option>
-                                    <option value="ropas">Roupas</option>
+                                    <option value="roupas">Roupas</option>
                                 </select>
                             </div>
                             <hr>
@@ -57,9 +57,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><input class="form-control" type="text" readonly value="Marca"></td>
-                                            <td><input class="form-control" type="text" name="marca" id="marca"></td>
+                                        <tr v-for="c in produto.caracteristicas">
+                                            <td><input class="form-control" type="text" v-bind:readonly="c.readonly" v-model="c.chave" ></td>
+                                            <td><input class="form-control" type="text" v-model="c.valor"></td>
                                             <td></td>
                                         </tr>
                                     </tbody>
@@ -71,19 +71,19 @@
                                 <div class="row">
                                     <div class="col">
                                         <label for="comprimento">Comprimento</label>
-                                        <input class="form-control" type="number" name="comprimento" id="comprimento">
+                                        <input class="form-control" type="number" v-model="produto.medidas_produto.comprimento">
                                     </div>
                                     <div class="col">
                                         <label for="largura">Largura</label>
-                                        <input class="form-control" type="number" name="largura" id="largura">
+                                        <input class="form-control" type="number" v-model="produto.medidas_produto.largura">
                                     </div>
                                     <div class="col">
                                         <label for="altura">Altura</label>
-                                        <input class="form-control" type="number" name="altura" id="altura">
+                                        <input class="form-control" type="number" v-model="produto.medidas_produto.altura">
                                     </div>
                                     <div class="col">
                                         <label for="peso">Peso</label>
-                                        <input class="form-control" type="number" name="peso" id="peso">
+                                        <input class="form-control" type="number" v-model="produto.medidas_produto.peso">
                                     </div>
                                 </div>
                             </div>
@@ -93,30 +93,34 @@
                                 <div class="row">
                                     <div class="col">
                                         <label for="comprimento">Comprimento</label>
-                                        <input class="form-control" type="number" name="comprimento" id="comprimento">
+                                        <input class="form-control" type="number" v-model="produto.medidas_pacote.comprimento">
                                     </div>
                                     <div class="col">
                                         <label for="largura">Largura</label>
-                                        <input class="form-control" type="number" name="largura" id="largura">
+                                        <input class="form-control" type="number" v-model="produto.medidas_pacote.largura">
                                     </div>
                                     <div class="col">
                                         <label for="altura">Altura</label>
-                                        <input class="form-control" type="number" name="altura" id="altura">
+                                        <input class="form-control" type="number" v-model="produto.medidas_pacote.altura">
                                     </div>
                                     <div class="col">
                                         <label for="peso">Peso</label>
-                                        <input class="form-control" type="number" name="peso" id="peso">
+                                        <input class="form-control" type="number" v-model="produto.medidas_pacote.peso">
                                     </div>
                                 </div>
                             </div>
                             <hr>
+                            <div class="form-group">
+                                <label for="category">Preço</label>
+                                <input type="number" class="form-control" v-model="produto.preco" />
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col pt-5 mb-5" id="app">
+            <div class="col pt-5 mb-5">
                 <div class="card">
                     <div class="card-header">
                         Cadastrar respostas automáticas

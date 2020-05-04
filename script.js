@@ -67,6 +67,32 @@ function readURL(input) {
 var app = new Vue({
     el: '#app',
     data: {
+        produto:{
+            titulo: "iPhone 11 Pro Prata, com Tela de 5,8\", 4G, 64 GB e Câmera de 12 MP",
+            descricao: "Assim nasce um Pro. Revolucionário sistema de câmera tripla que amplia possibilidades sem abrir mão da simplicidade. Um salto sem precedentes em duração de bateria. Chip assustadoramente potente que melhora ainda mais o aprendizado de máquina e redefine o que um smartphone pode fazer. Conheça o primeiro iPhone poderoso o suficiente para ser chamado de Pro.",
+            imagens: [],
+            categoria: "smatphone",
+            caracteristicas: [
+                {
+                    chave: "Marca",
+                    valor: "",
+                    readonly: true
+                }
+            ],
+            medidas_produto: {
+                comprimento: 0,
+                largura: 0,
+                altura: 0,
+                peso: 0
+            },
+            medidas_pacote: {
+                comprimento: 0,
+                largura: 0,
+                altura: 0,
+                peso: 0
+            },
+            preco: 0
+        },
         pergunta: "",
         pergunta_r: "",
         resposta: "",
