@@ -1,68 +1,3 @@
-$(document).ready(function() {
-
-    $('.color-choose input').on('click', function() {
-        var headphonesColor = $(this).attr('data-image');
-
-        $('.active').removeClass('active');
-        $('.left-column img[data-image = ' + headphonesColor + ']').addClass('active');
-        $(this).addClass('active');
-    });
-
-    $(".add-row").click(function() {
-        var markup = `<tr><td><input placeholder="preencha o titulo do atributo" class="form-control" type="text" name="" id=""></td>
-        <td><input  placeholder="preencha a informação atributo" class="form-control" type="text" name="" id=""></td>
-        <td><input onclick="$(this).closest('tr').remove();" type="button" value="Remover"></td></tr>`;
-        $("table tbody").append(markup);
-    });
-
-    // Find and remove selected table rows
-    $(".delete-row").click(function() {
-        $(this).parents("tr").remove();
-    });
-
-    $("#salvar").on('click', function() {
-        var produto = $("form.produto").serializeArray();
-        localStorage.setItem("produto", JSON.stringify(produto))
-        $(".message").show();
-
-    });
-
-    $("#pergunta").on('click', function() {
-        console.log(localStorage.getItem("respostas"));
-        console.log(localStorage.getItem("produto"));
-    });
-
-    $(".respostas").hide();
-    $(".message").hide();
-    $(".late").hide();
-});
-
-function readURL(input) {
-
-    if (input.files && input.files[0]) {
-        var filesAmount = input.files.length;
-
-        let images = ""
-
-        for (i = 0; i < filesAmount; i++) {
-            var reader = new FileReader();
-
-            reader.onload = function(event) {
-                images = `<div class="form-group">
-                                <img class="pl-2" src="${event.target.result}" width="70" height="50">
-                                <input onclick="$(this).closest('div').remove();" type="button" class="float-right pr-2" value="Remover">
-                                <input type="button" class="float-right" value="Foto Capa">
-                                <hr>
-                         </div>`
-                $(".div-images").append(images);
-            }
-
-            reader.readAsDataURL(input.files[i]);
-        }
-
-    }
-}
-
 /** VUE JS */
 var app = new Vue({
     el: '#app',
@@ -91,14 +26,17 @@ var app = new Vue({
                 altura: 0,
                 peso: 0
             },
-            preco: 0
+            preco: 0,
+            respostas_automaticas:[]
         },
+        msg_sucesso: false,
+
         pergunta: "",
-        pergunta_r: "",
-        resposta: "",
+        
         palavras_chave: "",
         resposta_automatica: "",
-        arr_respostas: []
+
+        perguntas: []
     },
     methods: {
         remove_acentos(str) {
@@ -108,31 +46,35 @@ var app = new Vue({
 
             let pergunta = this.remove_acentos(this.pergunta);
 
-            this.resposta = "";
-            this.arr_respostas = JSON.parse(localStorage.getItem("respostas"))
+            let resposta = "";
 
-            for (i_r = 0; i_r < this.arr_respostas.length; i_r++) {
+            for (i_r = 0; i_r < this.produto.respostas_automaticas.length; i_r++) {
 
-                let r = this.arr_respostas[i_r];
+                let r = this.produto.respostas_automaticas[i_r];
 
                 for (i = 0; i < r.palavras_chave.length; i++) {
                     let p = r.palavras_chave[i];
 
                     if (pergunta == p || pergunta.includes(" " + p + " ") || pergunta.includes(" " + p + "?") || pergunta.includes(p + " ")) {
-                        this.resposta += r.resposta;
-                        this.pergunta_r = this.pergunta;
-                        $(".late").hide();
-                        $(".respostas").show();
+                        resposta += r.resposta_automatica;
                         break;
                     }
                 }
             };
 
-            if (this.resposta == "") {
-                $(".late").show();
-                this.pergunta_r = ""
-                this.resposta = "[Escreva uma resposta para o cliente]";
+            if (resposta == "") {
+                resposta = "[Aguardando resposta do vendedor]";
             }
+
+            this.perguntas.push({
+                pergunta: this.pergunta,
+                resposta: resposta
+            });
+
+            localStorage.setItem("perguntas", JSON.stringify(this.perguntas) );
+
+            this.pergunta = "";
+
         },
         adicionar_resposta_automatica() {
             if (this.palavras_chave.trim() == '') return;
@@ -140,16 +82,55 @@ var app = new Vue({
             let palavras_chave = this.remove_acentos(this.palavras_chave);
             palavras_chave = palavras_chave.split(' ');
 
-            this.arr_respostas.push({
+            this.produto.respostas_automaticas.push({
                 palavras_chave: palavras_chave,
-                resposta: this.resposta_automatica
+                resposta_automatica: this.resposta_automatica
             });
 
-            localStorage.setItem("respostas", JSON.stringify(this.arr_respostas))
-
             this.palavras_chave = "";
-            this.resposta_automatica = ""
+            this.resposta_automatica = "";
 
+        },
+        remove_resposta_automatica(index){
+            this.produto.respostas_automaticas.splice(index, 1);
+        },
+        salvar(){
+            localStorage.setItem("produto", JSON.stringify(this.produto) );
+
+            this.msg_sucesso = true;
+        },
+        upload_imagem(event){
+            var file = event.target.files[0];
+            
+            new Promise( (s, e) => {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    s( e.target.result );
+                };
+                reader.onerror = function(error) {
+                    alert(error);
+                };
+                reader.readAsDataURL(file);  
+            })
+            .then(
+                (foto) =>{
+                    this.produto.imagens.push( foto );
+                }
+            );
+        },
+        remover_imagem(index){
+            this.produto.imagens.splice(index, 1);
+        }
+    },
+    beforeMount(){
+        let ls = localStorage.getItem('produto');
+        if( ls  && ls != ""){
+            this.produto = JSON.parse(ls);
+        }
+
+        let p = localStorage.getItem('perguntas');
+        if( p  && p != ""){
+            this.perguntas = JSON.parse(p);
         }
     }
 })

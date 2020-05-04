@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <!-- CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="robots" content="noindex,follow" />
 
 </head>
@@ -34,7 +35,13 @@
                             <hr>
                             <div class="form-group div-images">
                                 <label for="images">Enviar Imagens</label>
-                                <input onchange="readURL(this);" accept="image/jpeg, image/png" type="file" title="Escolher Imagens" multiple name="images[]" id="images">
+                                <input @change="upload_imagem" accept="image/*" type="file" title="Escolher Imagens" >
+
+                                <div class="form-group" v-for="(img, index) in produto.imagens">
+                                    <img class="pl-2" :src="img" width="70" height="50">
+                                    <input @click="remover_imagem(index)" type="button" class="float-right pr-2" value="Remover">
+                                    <hr>
+                                </div>
                             </div>
                             <hr>
                             <div class="form-group">
@@ -48,7 +55,7 @@
                             <div class="form-group">
                                 <label for="caracteristics">Características</label>
                                 <input type="button" class="add-row" value="Adicionar">
-                                <table class="table">
+                                <table class="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th>Atributo</th>
@@ -128,29 +135,50 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="key_word">Palavras Chave:</label>
-                            <input class="form-control" placeholder="Digite as palavras separadas por espaços" type="text" name="key_word" id="key_word" v-model="palavras_chave">
+                            <input class="form-control" placeholder="Digite as palavras separadas por espaços" type="text" v-model="palavras_chave">
                         </div>
                         <div class="form-group">
                             <label for="answer">Resposta Automática:</label>
-                            <input class="form-control" type="text" name="answer" id="answer" v-model="resposta_automatica">
+                            <input class="form-control" type="text" v-model="resposta_automatica">
                         </div>
                         <button @click="adicionar_resposta_automatica()">Adicionar</button>
                         <hr>
-                        <ul v-for="r in arr_respostas">
-                            <li>Palavras-chave: {{r.palavras_chave.join(' ')}}</li>
-                            <li>Resposta: {{r.resposta}}</li>
-                        </ul>
+                        <h5>Respostas Cadastradas</h5>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Palavras-chave</th>
+                                    <th>Resposta</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Características do Produto</td>
+                                    <td>Olá, Tudo bem? Muito obrigado por ter entrado em contato com a gente! Sua pergunta pode ajudar outros
+                                        clientes, por isso, atualizamos o cadastro e colocamos a sua resposta na descrição do produto.
+                                        Se tiver mais alguma dúvida, estamos à disposição!
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr v-for="(r, index) in produto.respostas_automaticas">
+                                    <td>{{r.palavras_chave.join(' ')}}</td>
+                                    <td>{{r.resposta_automatica}}</td>
+                                    <td><button class="btn btn-danger" @click="remove_resposta_automatica(index)"><i class="fa fa-trash"></i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="alert alert-success message" role="alert">
-            Dados Salvo com sucesso!
+        <div class="alert alert-success" v-show="msg_sucesso">
+            Os dados foram salvos com sucesso!
             <a href="produto.html">Ver produto</a>
         </div>
         <div class="row mb-5">
             <div class="col text-center">
-                <button id="salvar" class="btn btn-success btn-lg">Salvar</button>
+                <button class="btn btn-success btn-lg" @click="salvar()">Salvar</button>
             </div>
         </div>
     </main>
