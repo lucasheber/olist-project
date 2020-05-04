@@ -70,6 +70,9 @@ var app = new Vue({
             respostas_automaticas:[]
         },
         msg_sucesso: false,
+        resposta_padrao: `Olá, Tudo bem? Muito obrigado por ter entrado em contato com a gente! Sua pergunta pode ajudar outros
+        clientes, por isso, atualizamos o cadastro e colocamos a sua resposta na descrição do produto.
+        Se tiver mais alguma dúvida, estamos à disposição!`,
 
         pergunta: "",
         
@@ -87,6 +90,18 @@ var app = new Vue({
             let pergunta = this.remove_acentos(this.pergunta);
 
             let resposta = "";
+
+            for (i_r = 0; i_r < this.produto.caracteristicas.length; i_r++) {
+
+                let r = this.produto.caracteristicas[i_r];
+
+                let p = this.remove_acentos(r.chave);
+
+                if (pergunta == p || pergunta.includes(" " + p + " ") || pergunta.includes(" " + p + "?") || pergunta.includes(p + " ")) {
+                    resposta += this.resposta_padrao;
+                    break;
+                }
+            };
 
             for (i_r = 0; i_r < this.produto.respostas_automaticas.length; i_r++) {
 
