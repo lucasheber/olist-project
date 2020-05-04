@@ -14,81 +14,94 @@
 </head>
 
 <body>
-    <div class="row">
-        <div class="col">
-            <main class="container">
-
-                <!-- Left Column / Headphones Image -->
-                <div class="left-column">
-                    <img data-image="black" src="images/black.png" alt="">
-                    <img data-image="blue" src="images/blue.png" alt="">
-                    <img data-image="red" class="active" src="images/red.png" alt="">
-                </div>
-
-
-                <!-- Right Column -->
-                <div class="right-column">
-
-                    <!-- Product Description -->
-                    <div class="product-description">
-                        <span>Headphones</span>
-                        <h1>Beats EP</h1>
-                        <p>The preferred choice of a vast range of acclaimed DJs. Punchy, bass-focused sound and high isolation. Sturdy headband and on-ear cushions suitable for live performance</p>
-                    </div>
-
-                    <!-- Product Configuration -->
-                    <div class="product-configuration">
-
-                        <!-- Product Color -->
-                        <div class="product-color">
-                            <span>Color</span>
-
-                            <div class="color-choose">
-                                <div>
-                                    <input data-image="red" type="radio" id="red" name="color" value="red" checked>
-                                    <label for="red"><span></span></label>
-                                </div>
-                                <div>
-                                    <input data-image="blue" type="radio" id="blue" name="color" value="blue">
-                                    <label for="blue"><span></span></label>
-                                </div>
-                                <div>
-                                    <input data-image="black" type="radio" id="black" name="color" value="black">
-                                    <label for="black"><span></span></label>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- Cable Configuration -->
-                        <div class="cable-config">
-                            <span>Cable configuration</span>
-
-                            <div class="cable-choose">
-                                <button>Straight</button>
-                                <button>Coiled</button>
-                                <button>Long-coiled</button>
-                            </div>
-
-                            <a href="#">How to configurate your headphones</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Pricing -->
-                    <div class="product-price">
-                        <span>R$250</span>
-                        <a href="#" class="cart-btn">Add to cart</a>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </div>
-    <hr>
     <div id="app">
+        <div class="row">
+            <div class="col">
+                <main class="container">
+
+                    <!-- Left Column / Headphones Image -->
+                    <div class="left-column">
+                        <img data-image="black" src="images/black.png" width="100%" alt="">
+                        <img data-image="blue" src="images/blue.png" alt="">
+                        <img data-image="red" class="active" src="images/red.png" alt="">
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="right-column">
+
+                        <!-- Product Description -->
+                        <div class="product-description">
+                            <span>CATEGORIA</span>
+                            <h1>TITULO</h1>
+                            <p>DESCRIÇÃO</p>
+                        </div>
+
+                        <!-- Product Configuration -->
+                        <div class="product-configuration">
+
+                            <!-- Product Color -->
+                            <div class="product-color">
+                                <span>Color</span>
+
+                                <div class="color-choose">
+                                    <div>
+                                        <input data-image="red" type="radio" id="red" name="color" value="red" checked>
+                                        <label for="red"><span></span></label>
+                                    </div>
+                                    <div>
+                                        <input data-image="blue" type="radio" id="blue" name="color" value="blue">
+                                        <label for="blue"><span></span></label>
+                                    </div>
+                                    <div>
+                                        <input data-image="black" type="radio" id="black" name="color" value="black">
+                                        <label for="black"><span></span></label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Cable Configuration -->
+                            <div class="cable-config">
+                                <span>Cable configuration</span>
+
+                                <div class="cable-choose">
+                                    <button>Straight</button>
+                                    <button>Coiled</button>
+                                    <button>Long-coiled</button>
+                                </div>
+
+                                <a href="#">How to configurate your headphones</a>
+                            </div>
+                        </div>
+
+                        <!-- Product Pricing -->
+                        <div class="product-price">
+                            <span>R$250</span>
+                            <a href="#" class="cart-btn">Add to cart</a>
+                        </div>
+                    </div>
+
+                </main>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-sm-1 ml-5">
+                <img src="images/red.png" alt="" width="100">
+            </div>
+            <div class="col-sm-1">
+                <img src="images/blue.png" alt="" width="100">
+            </div>
+            <div class="col-sm-1">
+                <img src="images/black.png" alt="" width="100">
+            </div>
+        </div>
+        <hr>
+
         <div class="row">
             <div class="col p-2 ml-5">
                 <label for="pergunta">Faça sua pergunta abaixo:</label>
-                <textarea cols="15" placeholder="Escreva sua pergunta aqui" class="form-control" v-model="pergunta"></textarea>
+                <textarea cols="15" placeholder="Escreva sua pergunta aqui" class="form-control"
+                    v-model="pergunta"></textarea>
             </div>
             <div class="col p-5">
                 <button @click="verificar_pergunta()" class="btn btn-primary">Enviar Pergunta</button>
@@ -102,7 +115,7 @@
             </div>
             <div class="col pl-5 pr-5 late">
                 <div class="alert alert-success info" role="alert">
-                    Sua resposta será atendida em breve.
+                    Sua pergunta será atendida em breve.
                 </div>
             </div>
         </div>
