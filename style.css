@@ -215,6 +215,10 @@ form {
     background-color: #64af3d;
 }
 
+.respostas {
+    max-width: 60%;
+}
+
 
 /* Responsive */
 
