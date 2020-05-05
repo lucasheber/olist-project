@@ -79,7 +79,9 @@ var app = new Vue({
         palavras_chave: "",
         resposta_automatica: "",
 
-        perguntas: []
+        perguntas: [],
+
+        imagem_capa: ""
     },
     methods: {
         remove_acentos(str) {
@@ -181,6 +183,9 @@ var app = new Vue({
         },
         remover_imagem(index){
             this.produto.imagens.splice(index, 1);
+        },
+        muda_imagem(img){
+            this.imagem_capa = img;
         }
     },
     beforeMount(){
@@ -188,6 +193,9 @@ var app = new Vue({
         if( ls  && ls != ""){
             this.produto = JSON.parse(ls);
         }
+
+        if( this.produto.imagens[0] )
+            this.imagem_capa = this.produto.imagens[0];
 
         let p = localStorage.getItem('perguntas');
         if( p  && p != ""){

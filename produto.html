@@ -19,59 +19,71 @@
             <div class="col">
                 <main class="container">
 
-                    <!-- Left Column / Headphones Image -->
-                    <div class="left-column mt-5">
-                        <img active v-for="img in produto.imagens" :src="img" alt="">
-                    </div>
-
-                    <!-- Right Column -->
-                    <div class="right-column">
-
-                        <!-- Product Description -->
-                        <div class="product-description">
-                            <span>{{ produto.categoria }}</span>
-                            <h4>{{ produto.titulo }}</h4>
-                            <hr>
-                            <p class="text-justify">{{ produto.descricao }}</p>
+                    <div class="row">
+                        <div class="col-12 col-lg-6 offset-lg-6 text-center">
+                            <!-- Product Title -->
+                            <div class="product-title">
+                                <span>{{ produto.categoria }}</span>
+                                <h4>{{ produto.titulo }}</h4>
+                            </div>
+                        </div>
+                        <!-- Left Column / Headphones Image -->
+                        <div class="col-12 col-lg-6">
+                            <div class="row text-center">
+                                <div class="col-12">
+                                    <img :src="imagem_capa" class="img-fluid" alt="">
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-2 ml-5 text-center" v-for="img in produto.imagens">
+                                    <img :src="img" class="ml-2 img-fluid" alt="" width="100" @click="muda_imagem(img)" style="cursor: pointer;"> 
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Product Configuration -->
-                        <div class="product-configuration">
+                        <!-- Right Column -->
+                        <div class="col-12 col-lg-6">
 
-                            <!-- Product Color -->
-                            <div class="product-caracteristics">
-                                <table class="table table-striped table-hover">
-                                    <thead>
-                                        <tr class="text-center">
-                                            <th colspan="2">Características</th>
+                            
+
+                            <!-- Product Configuration -->
+                            <div class="product-configuration">
+
+                                <!-- Product Color -->
+                                <div class="product-caracteristics">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th colspan="2">Características</th>
+                                            </tr>
+                                        </thead>
+                                        <tr v-for="c in produto.caracteristicas">
+                                            <td>{{c.chave}}</td>
+                                            <td>{{c.valor}}</td>
                                         </tr>
-                                    </thead>
-                                    <tr v-for="c in produto.caracteristicas">
-                                        <td>{{c.chave}}</td>
-                                        <td>{{c.valor}}</td>
-                                    </tr>
-                                </table>
+                                    </table>
 
+                                </div>
+
+                                <!-- Cable Configuration -->
+                                <div class="cable-config">
+                                    <a href="#">Manual de configuração</a>
+                                </div>
                             </div>
 
-                            <!-- Cable Configuration -->
-                            <div class="cable-config">
-                                <a href="#">Manual de configuração</a>
+                            <!-- Product Description -->
+                            <div class="product-description">
+                                <p class="text-justify">{{ produto.descricao }}</p>
                             </div>
-                        </div>
 
-                        <!-- Product Pricing -->
-                        <div class="product-price">
-                            <span>R$ {{produto.preco}}</span>
-                            <a href="#" class="cart-btn">Comprar</a>
+                            <!-- Product Pricing -->
+                            <div class="product-price">
+                                <span>R$ {{produto.preco}}</span>
+                                <a href="#" class="cart-btn">Comprar</a>
+                            </div>
                         </div>
                     </div>
                 </main>
-                <div style="position: absolute; top: 60%; text-center" class="row">
-                    <div class="col-sm-2 ml-5" v-for="img in produto.imagens">
-                        <img :src="img" class="ml-2" alt="" width="100">
-                    </div>
-                </div>
             </div>
         </div>
         <hr>
