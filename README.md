@@ -16,7 +16,6 @@ Projeto desenvolvido no MegaHack 2.0
 
 **Protótipo** : [veja aqui](https://https://lucasheber.github.io/olist-project/)
 
-#
 ## Screenshots
 
 ## Cadastro de produto
