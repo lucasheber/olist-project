@@ -14,7 +14,7 @@ Projeto desenvolvido no MegaHack 2.0
 - Dar respostas automáticas com base nas características do produto;
 - Incentivar os vendedores a manter os produtos atualizados através de bonificações;
 
-**Protótipo** : [veja aqui](https://https://lucasheber.github.io/olist-project/)
+**Protótipo** : [veja aqui](https://lucasheber.github.io/olist-project/)
 
 ## Screenshots
 
