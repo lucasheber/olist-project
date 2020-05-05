@@ -31,8 +31,20 @@
                         <div class="product-description">
                             <span>{{ produto.categoria }}</span>
                             <h4>{{ produto.titulo }}</h4>
+<<<<<<< HEAD
                             <hr>
                             <p class="text-justify">{{ produto.descricao }}</p>
+=======
+                            <div>
+                                <table class="table table-bordered table-striped">
+                                    <tr v-for="p in produto.caracteristicas">
+                                        <th>{{p.chave}}</th>
+                                        <td>{{p.valor}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <p>{{ produto.descricao }}</p>
+>>>>>>> 3b20e179b3950ef33076ba0a1bf9b3ca79b74efa
                         </div>
 
                         <!-- Product Configuration -->
