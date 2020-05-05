@@ -25,7 +25,7 @@ form {
 }
 
 .right-column {
-    width: 35%;
+    width: 42%;
     margin-top: 60px;
 }
 
@@ -33,11 +33,11 @@ form {
 /* Left Column */
 
 .left-column img {
-    width: 100%;
+    width: 55%;
     position: absolute;
     left: 0;
     top: 0;
-    opacity: 0;
+    opacity: 1;
     transition: all 0.3s ease;
 }
 
@@ -50,11 +50,6 @@ form {
 
 
 /* Product Description */
-
-.product-description {
-    border-bottom: 1px solid #E1E8EE;
-    margin-bottom: 20px;
-}
 
 .product-description span {
     font-size: 12px;
